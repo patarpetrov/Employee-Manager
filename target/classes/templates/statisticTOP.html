@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Employee Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/statistic">Statistic <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                <a class="nav-link" href="/statistic/best">Best Employees<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">logout<span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Top employees filtered by completed tasks last month</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Tel. number</th>
+            <th>Monthly salary</th>
+            <th>Date of Birth</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tempEmployees:${employees}">
+                <td th:text="${tempEmployees.id}"/>
+                <td th:text="${tempEmployees.fullName}"/>
+                <td th:text="${tempEmployees.email}"/>
+                <td th:text="${tempEmployees.phoneNum}"/>
+                <td th:text="${tempEmployees.monthlySalary}"/>
+                <td th:text="${tempEmployees.dateOfBirth}"/>
+                <td><a th:href="@{/employee/__${tempEmployees.id}__}"><button type="button" class="btn btn-info">Info</button></a></td>
+                <td>
+                    <form th:action="@{/employee/delete/__${tempEmployees.id}__}" method="DELETE">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

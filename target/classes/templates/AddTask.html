@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Employee Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/task">All tasks<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/task/">Add task<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">logout<span class="sr-only"></span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<form th:object="${task}" action="/task/add" method="post">
+  <label for="title">Title: </label><br>
+  <input type="text" id="title" name="title"/> <br>
+
+  <label for="description">Description: </label><br>
+  <input type="text" id="description" name="description"/> <br>
+
+  <label for="duedate">Due date: </label><br>
+  <input type="date" id="duedate" name="dueDate"/> <br>
+  <label>Assign employees:</label>
+    <ul>
+      <label th:each="tempEmployees, stat : ${employee}">
+        <input type="checkbox" th:field="*{employees}" th:text="${tempEmployees.fullName}" th:value="${tempEmployees.id}"/>
+      </label>
+    </ul>
+
+
+
+  <button type="submit">add</button>
+</form>
+</body>
+</html>

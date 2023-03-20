@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Employee Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">logout<span class="sr-only"></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<table class="table" style="width:50%;">
+    <tr>
+        <th>ID:</th>
+        <td id="11" th:text="${employee.id}"/>
+        <td style="display:none; width:275.88px;" id="111"><input/></td>
+    </tr>
+    <tr>
+        <th>Full Name:</th>
+        <td id="22" th:text="${employee.getFullName}"/>
+        <td style="display:none; width:275.88px;" id="222"><input name="fullName" th:value="${employee.getFullName}"/></td>
+    </tr>
+    <tr>
+        <th>Telephone:</th>
+        <td id="33"th:text="${employee.phoneNum}"/>
+        <td style="display:none; width:275.88px;" id="333"><input name="phoneNum" th:value="${employee.phoneNum}"/></td>
+    </tr>
+    <tr>
+        <th>Email:</th>
+        <td id="44" th:text="${employee.email}"/>
+        <td style="display:none; width:275.88px;" id="444"><input name="email" th:value="${employee.email}"/></td>
+    </tr>
+    <tr>
+        <th>Monthly salary:</th>
+        <td id="55" th:text="${employee.monthlySalary}"/>
+        <td style="display:none; width:275.88px;" id="555"><input type name="monthlySalary" th:value="${employee.monthlySalary}"/></td>
+    </tr>
+    <tr>
+        <th>Date of birth: </th>
+        <td id="66"th:text="${employee.dateOfBirth}"/>
+        <td style="display:none; width:275.88px;" id="666"><input type="date" name="dateOfBirth"/></td>
+    </tr>
+</table>
+
+<br>
+<br>
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Due date</th>
+        <th>Assigned employees</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task:${tasks}">
+        <td th:text="${task.id}"/>
+        <td th:text="${task.title}"/>
+        <td th:text="${task.description}"/>
+        <td th:text="${task.dueDate}"/>
+        <td th:text="${task.employees}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

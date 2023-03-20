@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<form th:action="@{/employee/__${employee.id}__}" method="post">
+<table class="table" style="width:50%;">
+  <tr>
+    <th>ID:</th>
+    <td id="11" th:text="${employee.id}"/>
+    <td style="display:none; width:275.88px;" id="111"><input/></td>
+    <td><button id="1" type="button" class="btn btn-info">Update</button></td>
+  </tr>
+  <tr>
+    <th>Full Name:</th>
+    <td id="22" th:text="${employee.getFullName}"/>
+    <td style="display:none; width:275.88px;" id="222"><input name="fullName" th:value="${employee.getFullName}"/></td>
+    <td><button id="2" type="button" class="btn btn-info">Update</button></td>
+  </tr>
+  <tr>
+    <th>Telephone:</th>
+    <td id="33"th:text="${employee.phoneNum}"/>
+    <td style="display:none; width:275.88px;" id="333"><input name="phoneNum" th:value="${employee.phoneNum}"/></td>
+    <td><button id="3" type="button" class="btn btn-info">Update</button></td>
+  </tr>
+  <tr>
+    <th>Email:</th>
+    <td id="44" th:text="${employee.email}"/>
+    <td style="display:none; width:275.88px;" id="444"><input name="email" th:value="${employee.email}"/></td>
+    <td><button id="4" type="button" class="btn btn-info">Update</button></td>
+  </tr>
+  <tr>
+    <th>Monthly salary:</th>
+    <td id="55" th:text="${employee.monthlySalary}"/>
+    <td style="display:none; width:275.88px;" id="555"><input type name="monthlySalary" th:value="${employee.monthlySalary}"/></td>
+    <td><button id="5" type="button" class="btn btn-info">Update</button></td>
+  </tr>
+  <tr>
+    <th>Date of birth: </th>
+    <td id="66"th:text="${employee.dateOfBirth}"/>
+    <td style="display:none; width:275.88px;" id="666"><input type="date" name="dateOfBirth"/></td>
+    <td><button id="6" type="button" class="btn btn-info">Update</button></td>
+  </tr>
+</table>
+  <button type="submit" class="btn btn-success">Save changes</button>
+</form>
+<script>
+button1 = document.getElementById("1");
+button2 = document.getElementById("2");
+button3 = document.getElementById("3");
+button4 = document.getElementById("4");
+button5 = document.getElementById("5");
+button6 = document.getElementById("6");
+button1.addEventListener("click", function(){
+  table = document.getElementById("11");
+  table.style.display = "none";
+  input = document.getElementById("111");
+  input.style.display = "block";
+});
+
+button2.addEventListener("click", function(){
+  table = document.getElementById("22");
+  table.style.display = "none";
+  input = document.getElementById("222");
+  input.style.display = "block";
+});
+
+button3.addEventListener("click", function(){
+  table = document.getElementById("33");
+  table.style.display = "none";
+  input = document.getElementById("333");
+  input.style.display = "block";
+});
+
+button4.addEventListener("click", function(){
+  table = document.getElementById("44");
+  table.style.display = "none";
+  input = document.getElementById("444");
+  input.style.display = "block";
+});
+
+button5.addEventListener("click", function(){
+  table = document.getElementById("55");
+  table.style.display = "none";
+  input = document.getElementById("555");
+  input.style.display = "block";
+});
+
+button6.addEventListener("click", function(){
+  table = document.getElementById("66");
+  table.style.display = "none";
+  input = document.getElementById("666");
+  input.style.display = "block";
+});
+</script>
+</body>
+</html>

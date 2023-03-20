@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Employee Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/task">All tasks<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/task/">Add task</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">logout<span class="sr-only"></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<form th:object="${task}" th:action="@{/task/__${task.id}__}" method="post">
+    <table class="table" style="width:50%;">
+        <tr>
+            <th>ID:</th>
+            <td id="11" th:text="${task.id}"/>
+            <td style="display:none; width:275.88px;" id="111"><input name="id" th:value="${task.id}"/></td>
+            <td><button id="1" type="button" class="btn btn-info">Update</button></td>
+        </tr>
+        <tr>
+            <th>Title:</th>
+            <td id="22" th:text="${task.title}"/>
+            <td style="display:none; width:275.88px;" id="222"><input name="title" th:value="${task.title}"/></td>
+            <td><button id="2" type="button" class="btn btn-info">Update</button></td>
+        </tr>
+        <tr>
+            <th>Description:</th>
+            <td id="33"th:text="${task.description}"/>
+            <td style="display:none; width:275.88px;" id="333"><input name="description" th:value="${task.description}"/></td>
+            <td><button id="3" type="button" class="btn btn-info">Update</button></td>
+        </tr>
+        <tr>
+            <th>Due Date:</th>
+            <td id="44" th:text="${task.dueDate}"/>
+            <td style="display:none; width:275.88px;" id="444"><input type ="date"name="dueDate" th:value="${task.dueDate}"/></td>
+            <td><button id="4" type="button" class="btn btn-info">Update</button></td>
+        </tr>
+        <tr>
+            <th>Assigned employees</th>
+            <td id="55" th:text="${task.employees}"/>
+            <td style="display:none; width:275.88px;" id="555">
+                <ul>
+                    <label th:each="tempEmployees, stat : ${employeesused}">
+                        <input th:field="*{employees}" checked="true" type="checkbox" th:text="${tempEmployees.fullName}" th:value="${tempEmployees.id}"/>
+                    </label>
+
+                    <label th:each="tempEmployees, stat : ${employeesnotused}">
+                        <input th:field="*{employees}" type="checkbox" th:text="${tempEmployees.fullName}" th:value="${tempEmployees.id}"/>
+                    </label>
+                </ul>
+            </td>
+            <td><button id="5" type="button" class="btn btn-info">Update</button></td>
+        </tr>
+        <tr></tr>
+    </table>
+    <button type="submit" class="btn btn-success">Save changes</button>
+</form>
+<script>
+button1 = document.getElementById("1");
+button2 = document.getElementById("2");
+button3 = document.getElementById("3");
+button4 = document.getElementById("4");
+button5 = document.getElementById("5");
+button1.addEventListener("click", function(){
+  table = document.getElementById("11");
+  table.style.display = "none";
+  input = document.getElementById("111");
+  input.style.display = "block";
+});
+
+button2.addEventListener("click", function(){
+  table = document.getElementById("22");
+  table.style.display = "none";
+  input = document.getElementById("222");
+  input.style.display = "block";
+});
+
+button3.addEventListener("click", function(){
+  table = document.getElementById("33");
+  table.style.display = "none";
+  input = document.getElementById("333");
+  input.style.display = "block";
+});
+
+button4.addEventListener("click", function(){
+  table = document.getElementById("44");
+  table.style.display = "none";
+  input = document.getElementById("444");
+  input.style.display = "block";
+});
+
+button5.addEventListener("click", function(){
+  table = document.getElementById("55");
+  table.style.display = "none";
+  input = document.getElementById("555");
+  input.style.display = "block";
+});
+</script>
+</body>
+</html>
