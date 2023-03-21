@@ -74,10 +74,10 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
-    private Role checkRoleExist() {
-        Role role = new Role();
-        role.setName("ROLE_ADMIN");
-        return roleRepository.save(role);
-    }
+//    private Role checkRoleExist() {
+//        Role role = new Role();
+//        role.setName("ROLE_ADMIN");
+//        return roleRepository.save(role);
+//    }
 
 }

@@ -49,6 +49,8 @@ public class Employee {
         this.monthlySalary = monthlySalary;
         this.dateOfBirth = dateOfBirth;
     }
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Department department;
 
     public long getId() {
         return id;
@@ -104,6 +106,14 @@ public class Employee {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override

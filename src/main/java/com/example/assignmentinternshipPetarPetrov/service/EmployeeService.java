@@ -1,23 +1,26 @@
 package com.example.assignmentinternshipPetarPetrov.service;
 
 
+import com.example.assignmentinternshipPetarPetrov.entity.Department;
 import com.example.assignmentinternshipPetarPetrov.entity.Employee;
 import com.example.assignmentinternshipPetarPetrov.repository.EmployeeRepository;
+import com.example.assignmentinternshipPetarPetrov.repository.TaskRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
+    private final TaskRepository taskRepository;
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, TaskRepository taskRepository) {
         this.employeeRepository = employeeRepository;
+        this.taskRepository = taskRepository;
     }
 
     public List<Employee> getEmployees(){
@@ -46,19 +49,19 @@ public class EmployeeService {
         }
         return employeeById.get();
     }
-    @Transactional
     public void updateEmployee(Employee employee, Long id) {
         Employee old = getEmployee(id);
-        if (employee.getEmail() != old.getEmail()){
+        //TODO remove the if statements
+        if (!employee.getEmail().equals(old.getEmail())){
             old.setEmail(employee.getEmail());
         }
-        if (employee.getFullName() != old.getFullName()){
+        if (!employee.getFullName().equals(old.getFullName())){
             old.setFullName(employee.getFullName());
         }
-        if (employee.getMonthlySalary() != old.getMonthlySalary()){
+        if (!employee.getMonthlySalary().equals(old.getMonthlySalary())){
             old.setMonthlySalary(employee.getMonthlySalary());
         }
-        if (employee.getPhoneNum() != old.getMonthlySalary()){
+        if (!employee.getPhoneNum().equals(old.getMonthlySalary())){
             old.setPhoneNum(employee.getPhoneNum());
         }
         if (employee.getDateOfBirth() != null){
@@ -74,4 +77,25 @@ public class EmployeeService {
     public Collection<Employee> getEmployeesWithTask(Long id) {
         return employeeRepository.findEmployeeWITHTaskID(id);
     }
+
+    //TODO
+//    public void addDepartment() {
+//        List<Employee> employeeList = new ArrayList<>();
+//        Employee employee1 = new Employee("Petar Petrov",
+//                "petar.petrov@gmail.com",
+//                "123", "1600",
+//                LocalDate.now());
+//        employeeRepository.save(employee1);
+//
+//        employeeList.add(employee1);
+//        Department department = new Department("Admin", employeeList);
+//
+//        employee1.setDepartment(department);
+//        employeeRepository.save(employee1);
+//
+//
+//        LocalDate datenow = LocalDate.now();
+//        LocalDate dateold = datenow.minusMonths(1);
+//        taskRepository.findTasksLastMonthByEmployeeEmail(employee1.getEmail(), dateold.toString().replace("-", ""), datenow.toString().replace("-", ""));
+//    }
 }

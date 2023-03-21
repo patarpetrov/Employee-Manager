@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+
 @Controller
 public class EmployeeController {
     private final EmployeeService employeeService;
@@ -57,4 +59,9 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         return new ModelAndView("redirect:/employee");
     }
+    //TODO
+//    @GetMapping("/employee/department")
+//    public void department(){
+//        employeeService.addDepartment();
+//    }
 }
